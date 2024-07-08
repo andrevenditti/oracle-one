@@ -2,11 +2,15 @@ package br.com.alura.screenmatch;
 
 import br.com.alura.screenmatch.model.DadosEpisodios;
 import br.com.alura.screenmatch.model.DadosSerie;
+import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -30,5 +34,15 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		json = consumoApi.obterDados("https://www.omdbapi.com/?t=breaking+bad&Season=2&episode=2&apikey=ef6f5091");
 		DadosEpisodios dadosEpisodios = converteDados.obertDados(json, DadosEpisodios.class);
 		System.out.println(dadosEpisodios);
+
+		//dados de uma temporada da api
+		List<DadosTemporada> temporadas = new ArrayList<>();
+		for (int i = 1; i <= dadosSerie.totalTemporadas() ; i++) {
+
+			json = consumoApi.obterDados("https://www.omdbapi.com/?t=breaking+bad&season=" + i + "&apikey=ef6f5091");
+			DadosTemporada dadosTemporada = converteDados.obertDados(json, DadosTemporada.class);
+			temporadas.add(dadosTemporada)
+		}
+		temporadas.forEach(System.out::println);
 	}
 }
