@@ -27,12 +27,12 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 		//dados da serie
 		ConverteDados converteDados = new ConverteDados();
-		DadosSerie dadosSerie = converteDados.obertDados(json, DadosSerie.class);
+		DadosSerie dadosSerie = converteDados.obterDados(json, DadosSerie.class);
 		System.out.println(dadosSerie);
 
 		//dados de um episodio consumido da API
 		json = consumoApi.obterDados("https://www.omdbapi.com/?t=breaking+bad&Season=2&episode=2&apikey=ef6f5091");
-		DadosEpisodios dadosEpisodios = converteDados.obertDados(json, DadosEpisodios.class);
+		DadosEpisodios dadosEpisodios = converteDados.obterDados(json, DadosEpisodios.class);
 		System.out.println(dadosEpisodios);
 
 		//dados de uma temporada da api
@@ -40,8 +40,8 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		for (int i = 1; i <= dadosSerie.totalTemporadas() ; i++) {
 
 			json = consumoApi.obterDados("https://www.omdbapi.com/?t=breaking+bad&season=" + i + "&apikey=ef6f5091");
-			DadosTemporada dadosTemporada = converteDados.obertDados(json, DadosTemporada.class);
-			temporadas.add(dadosTemporada)
+			DadosTemporada dadosTemporada = converteDados.obterDados(json, DadosTemporada.class);
+			temporadas.add(dadosTemporada);
 		}
 		temporadas.forEach(System.out::println);
 	}
