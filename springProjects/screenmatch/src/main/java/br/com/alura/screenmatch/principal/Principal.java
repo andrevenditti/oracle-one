@@ -8,6 +8,7 @@ import br.com.alura.screenmatch.service.ConverteDados;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import org.springframework.format.datetime.DateFormatter;
 
+import javax.swing.plaf.DesktopPaneUI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -91,5 +92,12 @@ public class Principal {
 //                                " Episodio: " + e.getTitulo() +
 //                                " Data lançamento: " + e.getDataLancamento().format(formatador)
 //                ));
+
+
+        Map<Integer, Double> avaliacaoPorTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+        System.out.println(avaliacaoPorTemporada);
     }
 }
