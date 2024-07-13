@@ -8,11 +8,11 @@
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 //
 //@SpringBootApplication
-//public class ScreenmatchApplicationSemWeb implements CommandLineRunner {
+//public class ScreenmatchApplication implements CommandLineRunner {
 //	@Autowired
 //	SerieRepository repositorio;
 //	public static void main(String[] args) {
-//		SpringApplication.run(ScreenmatchApplicationSemWeb.class, args);
+//		SpringApplication.run(ScreenmatchApplication.class, args);
 //	}
 //
 //	@Override
