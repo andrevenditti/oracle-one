@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.dto.MedicosDTO;
 import med.voll.api.model.endereco.Endereco;
 
 @Entity(name = "Medico")
@@ -25,4 +26,12 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+
+    public Medico(MedicosDTO data) {
+        this.nome = data.nome();
+        this.email = data.email();
+        this.crm = data.crm();
+        this.especialidade = data.especialidade();
+        this.endereco = new Endereco(data.endereco());
+    }
 }
