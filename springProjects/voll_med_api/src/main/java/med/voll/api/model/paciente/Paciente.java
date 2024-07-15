@@ -27,12 +27,15 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
     public Paciente(PacienteDTO data) {
         this.nome = data.nome();
         this.email = data.email();
         this.cpf = data.cpf();
         this.telefone = data.telefone();
         this.endereco = new Endereco(data.endereco());
+        this.ativo = true;
     }
 
     public void atualizaInfos(PacienteAtualizaDTO data) {
@@ -45,5 +48,9 @@ public class Paciente {
         if(data.endereco() != null) {
             this.endereco.atualizarInfos(data.endereco());
         }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
