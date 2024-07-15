@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.dto.MedicoAtualizaDTO;
 import med.voll.api.dto.MedicoDTO;
 import med.voll.api.model.endereco.Endereco;
 
@@ -35,5 +36,17 @@ public class Medico {
         this.crm = data.crm();
         this.especialidade = data.especialidade();
         this.endereco = new Endereco(data.endereco());
+    }
+
+    public void atualizaInfos(MedicoAtualizaDTO data) {
+        if(data.nome() != null) {
+            this.nome = data.nome();
+        }
+        if (data.telefone() != null) {
+            this.telefone = data.telefone();
+        }
+        if(data.endereco() != null) {
+            this.endereco.atualizarInfos(data.endereco());
+        }
     }
 }
